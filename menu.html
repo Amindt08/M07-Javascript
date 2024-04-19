@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Pembayaran dengan jQuery</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        .menu-container {
+        width: 300px;
+        margin: 50px auto;
+        }
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .menu li {
+            margin-bottom: 10px;
+        }
+        .menu li a {
+            display: block;
+            background-color: #f4f4f4;
+            color: #333;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .menu li a:hover {
+            background-color: #ddd;
+        }
+        .total {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<h1>Menu Pembayaran</h1>
+<div class="menu-container">
+    <ul class="menu">
+        <li><a href="#" data-price="10000">Item 1 (Rp 10000)</a></li>
+        <li><a href="#" data-price="20000">Item 2 (Rp 20000)</a></li>
+        <li><a href="#" data-price="15000">Item 3 (Rp 15000)</a></li>
+    </ul>
+    <div class="total">Total: Rp<span id="total-price">0</span></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Mengambil jQuery dari CDN -->
+<script>
+    $(document).ready(function() {
+        $('.menu a').click(function(e) {
+            e.preventDefault();
+            var price = parseInt($(this).data('price'));
+            var total = parseInt($('#total-price').text());
+            var newTotal = total + price;
+            $('#total-price').text(newTotal);
+        });
+    });
+</script> 
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Dialog</title>
+<style>
+.dialog {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.dialog-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+.progress {
+  width: 0%;
+  height: 30px;
+  background-color: #4caf50;
+}
+</style>
+</head>
+<body>
+<h1>Klik Download untuk memulai proses pengunduhan!</h1>
+<button id="startDownload">Download</button>
+
+<div id="downloadDialog" class="dialog">
+  <div class="dialog-content">
+    <h2>Downloading...</h2>
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#startDownload").click(function(){
+    $("#downloadDialog").show();
+    simulateDownload();
+  });
+});
+
+function simulateDownload() {
+  var progressBar = $(".progress");
+  var width = 1;
+  var downloadInterval = setInterval(function(){
+    if (width >= 100) {
+      clearInterval(downloadInterval);
+      $("#downloadDialog").hide();
+    } else {
+      width++;
+      progressBar.css("width", width + "%");
+    }
+  }, 50);
+}
+</script>
+
+</body>
+</html>
